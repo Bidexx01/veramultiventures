@@ -1,0 +1,135 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --radius: 0.75rem;
+  --brand-green: #14532D;
+  --brand-green-deep: #166534;
+  --brand-orange: #F97316;
+  --brand-orange-deep: #EA580C;
+  --brand-cream: #FFFBEB;
+  --brand-mint: #F0FDF4;
+  --brand-gray-bg: #F9FAFB;
+  --ink: #1F2937;
+  --ink-soft: #4B5563;
+  --background: #FFFFFF;
+  --foreground: var(--ink);
+  --card: #FFFFFF;
+  --card-foreground: var(--ink);
+  --popover: #FFFFFF;
+  --popover-foreground: var(--ink);
+  --primary: var(--brand-green);
+  --primary-foreground: #FFFFFF;
+  --secondary: var(--brand-orange);
+  --secondary-foreground: #FFFFFF;
+  --muted: var(--brand-gray-bg);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--brand-cream);
+  --accent-foreground: var(--ink);
+  --destructive: #DC2626;
+  --destructive-foreground: #FFFFFF;
+  --border: #E5E7EB;
+  --input: #E5E7EB;
+  --ring: var(--brand-green);
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+  --font-display: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-deep: var(--brand-green-deep);
+  --color-brand-orange: var(--brand-orange);
+  --color-brand-orange-deep: var(--brand-orange-deep);
+  --color-brand-cream: var(--brand-cream);
+  --color-brand-mint: var(--brand-mint);
+  --color-brand-gray-bg: var(--brand-gray-bg);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { scroll-behavior: smooth; }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.01em;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+.btn-cta {
+  @apply inline-flex items-center justify-center gap-2 text-white font-semibold text-lg py-4 px-8 rounded-full transition-all duration-150;
+  background-color: var(--brand-orange);
+  font-family: var(--font-display);
+  box-shadow: 0 12px 30px -10px rgba(249, 115, 22, 0.5);
+}
+.btn-cta:hover {
+  background-color: var(--brand-orange-deep);
+  transform: translateY(-2px);
+}
+.btn-cta-deep {
+  @apply inline-flex items-center justify-center gap-2 text-white font-bold text-lg py-4 px-8 rounded-full transition-transform duration-150;
+  background-color: var(--brand-orange-deep);
+  font-family: var(--font-display);
+  box-shadow: 0 14px 30px -10px rgba(234, 88, 12, 0.5);
+}
+.btn-cta-deep:hover { transform: translateY(-2px); }
+
+.section-pad {
+  padding-top: clamp(3.5rem, 7vw, 6rem);
+  padding-bottom: clamp(3.5rem, 7vw, 6rem);
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+.whatsapp-pulse::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background-color: #25D366;
+  animation: pulse-ring 1.5s ease-out infinite;
+  z-index: -1;
+}
+
+@keyframes flash {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.flash-animation { animation: flash 1s ease-in-out infinite; }
